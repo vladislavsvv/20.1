@@ -1,0 +1,31 @@
+{% extends "catalog/base.html" %}
+{% block content %}
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-2">Ассортимент</h1>
+    <p class="lead">Нажмите на понравившийся продукт чтобы увидеть подробное описание</p>
+</div>
+
+
+<div class="container">
+    <div class="col-12 mb-5">
+        <a class="btn btn-outline-primary" href="{% url 'catalog:product_create' %}">Добавить продукт</a>
+    </div>
+    <div class="row text-center">
+        {% for product in object_list %}
+        <div class="col-3">
+            <div class="card mb-4 box-shadow">
+                <div class="card-header">
+                    <h2>{{ product.name }}</h2>
+                </div>
+                <div class="card-body">
+                    <p>Номер версии: <b>{{ product.active_version_number }}</b></p>
+                    <p>Название версии: <b>{{ product.active_version_name }}</b></p>
+                    <a href="{% url 'catalog:product_details' product.pk %}" class="btn mt-auto btn-outline-danger">Детали</a>
+                    <a href="{% url 'catalog:product_update' product.pk %}" class="btn mt-auto btn-outline-danger">Исправить</a>
+                    <a href="{% url 'catalog:product_delete' product.pk %}" class="btn mt-auto btn-outline-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endblock %}
