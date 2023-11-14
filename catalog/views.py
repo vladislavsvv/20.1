@@ -95,7 +95,7 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         formset = self.get_context_data()['formset']
-        self.object = form.save()  # для создания обязательно
+        self.object = form.save()
         if formset.is_valid():
             formset.instance = self.object
             formset.save()

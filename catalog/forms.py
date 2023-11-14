@@ -1,13 +1,9 @@
 from crispy_forms.layout import Submit
 from django import forms
 from crispy_forms.helper import FormHelper
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from django.forms import models
-from prompt_toolkit.validation import ValidationError
 
-from catalog.models import Product, Version, NULLABLE
-from django.forms import BaseInlineFormSet, inlineformset_factory
+from catalog.models import Product, Version
+
 
 
 class StyleFormMixin:
@@ -29,8 +25,8 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
     def clean_name(self):
         cleaned_data = self.cleaned_data['name']
-        prohibited_list = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция',
-                           'радар']
+        prohibited_list = ['планшеты', 'плита', 'озеро', 'шлакоблоки', 'вереск', 'габилен', 'ель', 'оппонент',
+                           'кантробас']
         for obj in prohibited_list:
             if obj in cleaned_data:
                 raise forms.ValidationError("Продукт запрещен к продаже")
@@ -39,8 +35,8 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
 
     def clean_description(self):
         cleaned_data = self.cleaned_data['description']
-        prohibited_list = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция',
-                           'радар']
+        prohibited_list = ['планшеты', 'плита', 'озеро', 'шлакоблоки', 'вереск', 'габилен', 'ель', 'оппонент',
+                           'кантробас']
         for obj in prohibited_list:
             if obj in cleaned_data:
                 raise forms.ValidationError("Продукт запрещен к продаже")
